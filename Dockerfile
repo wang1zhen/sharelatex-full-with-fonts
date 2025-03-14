@@ -28,6 +28,13 @@ RUN apt-get install inkscape -y
 # install lilypond
 RUN apt-get install lilypond -y
 
+# install noto fonts
+RUN apt install -y fonts-noto
+
+# install ms fonts
+RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+RUN apt install ttf-mscorefonts-installer -y
+
 # enable shell-escape by default:
 RUN TEXLIVE_FOLDER=$(find /usr/local/texlive/ -type d -name '20*') \
     && echo % enable shell-escape by default >> /$TEXLIVE_FOLDER/texmf.cnf \
